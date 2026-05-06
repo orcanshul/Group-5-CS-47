@@ -1,4 +1,8 @@
 # Idea behind the project
+Names:
+Anshul Kulkarni
+Ethan Hachue
+
 
 Input:
 - a file
