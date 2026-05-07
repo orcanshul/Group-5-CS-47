@@ -15,13 +15,13 @@ RUN mkdir -p backend/mars && \
 
 # ── backend ──────────────────────────────────────────────────────────────────
 COPY backend/package.json backend/
-RUN cd backend && npm ci --production
+RUN cd backend && npm install --omit=dev
 
 COPY backend/server.js backend/
 
 # ── frontend ──────────────────────────────────────────────────────────────────
 COPY frontend/package.json frontend/
-RUN cd frontend && npm ci
+RUN cd frontend && npm install
 
 COPY frontend/ frontend/
 RUN cd frontend && npm run build
