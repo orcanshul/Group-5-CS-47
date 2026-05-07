@@ -10,7 +10,7 @@ WORKDIR /app
 # Download MARS 4.5 JAR
 RUN mkdir -p backend/mars && \
     curl -fL -o backend/mars/Mars4_5.jar \
-    "http://courses.missouristate.edu/KenVollmar/MARS/MARS_4_5_Aug2014/Mars4_5.jar" && \
+    "https://github.com/dpetersanderson/MARS/releases/download/v.4.5.1/Mars4_5.jar" && \
     echo "MARS JAR downloaded successfully"
 
 # ── backend ──────────────────────────────────────────────────────────────────
