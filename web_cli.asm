@@ -29,11 +29,10 @@ do_null:
 hashing:
     la  $a0, filename
     jal hash_file
-    move $s0, $v0
 
     print_string(output)
-    print_int($s0)
-    la  $a0, newline          # newline is defined inside hash.asm below
+    jal print_sha256
+    la  $a0, newline
     li  $v0, 4
     syscall
     exit

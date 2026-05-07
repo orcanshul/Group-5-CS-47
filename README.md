@@ -2,7 +2,7 @@
 
 **Authors:** Anshul Kulkarni, Ethan Hachue
 
-A file integrity tool that computes a DJB2 checksum of any file using MIPS assembly running on the MARS simulator. Upload a file through the React web UI and the checksum is computed entirely inside the MIPS program - no shortcuts.
+A file integrity tool that computes a SHA-256 checksum of any file using MIPS assembly running on the MARS simulator. Upload a file through the React web UI and the checksum is computed entirely inside the MIPS program - no shortcuts.
 
 ---
 
@@ -17,29 +17,23 @@ Browser  →  React frontend (Vite, port 5173)
          →  MARS simulator  (runs MIPS assembly)
               ↓  web_cli.asm reads path from stdin (syscall 8)
               ↓  hash.asm opens file (syscall 13), reads in 4 KB chunks (syscall 14)
-              ↓  computes DJB2 hash byte-by-byte: hash = hash * 33 + byte
-              ↓  prints "Generated checksum: <value>"
-         →  backend parses the number, deletes the temp file, returns JSON
+              ↓  computes SHA-256 digest (FIPS 180-4) across all file bytes
+              ↓  prints "Generated checksum: <64-char hex>"
+         →  backend parses the hex string, deletes the temp file, returns JSON
               ↓
          →  frontend displays the checksum
 ```
 
-### The DJB2 algorithm (in MIPS)
+### The SHA-256 algorithm (in MIPS)
 
-DJB2 is a fast, non-cryptographic hash. Starting from the seed `5381`, for every byte `b` in the file:
-
-```
-hash = hash * 33 + b
-```
-
-The multiply-by-33 is done with a left-shift-5 and an add (`sll $t3, $s1, 5` / `addu $s1, $s1, $t3`). The result is a signed 32-bit integer, so large files will produce negative values - that is expected.
+SHA-256 (FIPS 180-4) is a cryptographic hash that produces a 256-bit (32-byte) digest. The implementation processes the file in 64-byte blocks. Each block expands into a 64-word message schedule and is compressed through 64 rounds using bitwise operations (ROTR, XOR, AND, NOT) and modular addition. After all blocks are processed, the final padding block encodes the total message length as a 64-bit big-endian integer. The result is 8 × 32-bit words printed as a 64-character lowercase hex string.
 
 ### MIPS source files
 
 | File | Purpose |
 |---|---|
 | `cli.asm` | Original CLI entry point - prompts for filename, calls hash_file, prints result |
-| `hash.asm` | Core algorithm - opens file, reads 4 KB chunks, computes DJB2, returns hash in `$v0` |
+| `hash.asm` | Core algorithm - opens file, reads 4 KB chunks, computes SHA-256, prints 64-char hex digest |
 | `cli_macro.asm` | Helper macros: `print_string`, `print_int`, `read_filename`, `exit` |
 | `FileReader.asm` | Alternative entry - same as cli.asm but also prints file contents |
 | `web_cli.asm` | Web entry point - mirrors cli.asm but places `main:` before the hash.asm include so MARS headless mode (`-sm`) starts at the right instruction |
@@ -113,7 +107,7 @@ The container installs Java, downloads MARS, builds the React app, and serves ev
 ```
 group5/
 ├── cli.asm            original MIPS CLI entry point
-├── hash.asm           DJB2 hash implementation in MIPS
+├── hash.asm           SHA-256 implementation in MIPS
 ├── cli_macro.asm      MIPS helper macros
 ├── FileReader.asm     alternative MIPS entry (also prints file contents)
 ├── web_cli.asm        web-specific MIPS entry point (main: label for headless MARS)
@@ -145,9 +139,9 @@ Accepts a `multipart/form-data` request with a single `file` field.
 **Response (success):**
 ```json
 {
-  "checksum": "-2120139430",
+  "checksum": "2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824",
   "filename": "example.txt",
-  "raw": "Enter file path: \nGenerated checksum: -2120139430\n"
+  "raw": "Enter file path: \nGenerated checksum: 2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824\n"
 }
 ```
 

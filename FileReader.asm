@@ -63,13 +63,11 @@ done:
     move $a0, $s0
     syscall
 
-    # Compute and print SHA256 hash via hash.asm
     la  $a0, filename
-    jal hash_file           # hash -> $v0
-    move $s1, $v0           # save before print_string clobbers $v0
+    jal hash_file
 
     print_string(output)
-    print_int($s1)
+    jal print_sha256
     la $a0, newline
     li $v0, 4
     syscall

@@ -28,13 +28,11 @@ replace_null:
     sb $zero, 0($t0)
 
 done_cleaning:
-    # call hash_file with filename, result in $v0
     la  $a0, filename
     jal hash_file
-    move $s0, $v0            # save hash before print_string clobbers $v0
 
     print_string(output)
-    print_int($s0)
+    jal print_sha256
     la  $a0, newline
     li  $v0, 4
     syscall

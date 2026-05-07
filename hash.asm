@@ -470,4 +470,47 @@ spb_update_state:
     addiu $sp, $sp, 40
     jr    $ra
 
+
+# print_sha256: prints sha256_state[0..7] as a 64-character lowercase hex string
+print_sha256:
+    addiu $sp, $sp, -8
+    sw    $ra, 4($sp)
+    sw    $s0, 0($sp)
+
+    la    $s0, sha256_state
+    li    $t7, 8               # 8 words
+
+psh_word_loop:
+    beqz  $t7, psh_done
+    lw    $t6, 0($s0)          # current word
+    li    $t5, 8               # 8 nibbles per word
+
+psh_nibble_loop:
+    beqz  $t5, psh_next_word
+    srl   $a0, $t6, 28         # isolate top nibble
+    andi  $a0, $a0, 0xf
+    li    $t4, 10
+    blt   $a0, $t4, psh_digit
+    addiu $a0, $a0, 87         # 'a' - 10
+    j     psh_print
+psh_digit:
+    addiu $a0, $a0, 48         # '0'
+psh_print:
+    li    $v0, 11              # print char syscall
+    syscall
+    sll   $t6, $t6, 4          # shift to next nibble
+    addiu $t5, $t5, -1
+    j     psh_nibble_loop
+
+psh_next_word:
+    addiu $s0, $s0, 4
+    addiu $t7, $t7, -1
+    j     psh_word_loop
+
+psh_done:
+    lw    $ra, 4($sp)
+    lw    $s0, 0($sp)
+    addiu $sp, $sp, 8
+    jr    $ra
+
 #BLAZING FAST SHA-256 HASHING FOR MIPS🚀🚀🚀🚀🚀🚀🚀

@@ -62,7 +62,7 @@ app.post('/api/checksum', upload.single('file'), (req, res) => {
         });
       }
 
-      const match = stdout.match(/Generated checksum:\s*(-?\d+)/);
+      const match = stdout.match(/Generated checksum:\s*([0-9a-f]{64})/);
       res.json({
         checksum: match ? match[1] : null,
         filename: req.file.originalname,
