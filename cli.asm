@@ -6,7 +6,6 @@ prompt: .asciiz "Enter file path: "
 filename:   .space 128
 buffer:     .space 1024
 
-error_message: .asciiz "Failed to open the file."
 output: .asciiz "\nGenerated checksum: "
 
 .text
