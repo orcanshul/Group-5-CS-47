@@ -1,11 +1,10 @@
+.include "./cli.asm"
 .include "./cli_macro.asm"
 .include "./hash.asm"
 
 .data
-prompt:     .asciiz "Enter file path: "
 errorMsg:   .asciiz "Error: Could not open file."
 output:     .asciiz "\nGenerated checksum: "
-filename:   .space 128
 fileBuffer: .space 128
 
 .text
@@ -13,20 +12,8 @@ fileBuffer: .space 128
 
 main:
     # Get filename from user
-    print_string(prompt)
-    read_filename
 
-    # Strip trailing newline left by syscall 8
-    la $t0, filename
-strip_newline:
-    lb $t1, 0($t0)
-    beq  $t1, 10, do_replace
-    beqz $t1, after_strip
-    addi $t0, $t0, 1
-    j strip_newline
-do_replace:
-    sb $zero, 0($t0)
-after_strip:
+    get_file_name
 
     # Open file (read-only)
     li $v0, 13
