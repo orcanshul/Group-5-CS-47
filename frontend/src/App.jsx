@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react';
 import './App.css';
 import { Shader3 } from './components/Shader3';
+import { Logos25 } from './components/logos';
 
 export default function App() {
   const [file, setFile]         = useState(null);
@@ -139,6 +140,7 @@ export default function App() {
               {showRaw && <pre className="raw-output">{result.raw}</pre>}
             </div>
           )}
+          <Logos25></Logos25>
         </main>
 
         <footer>
