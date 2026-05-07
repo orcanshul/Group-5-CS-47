@@ -140,12 +140,11 @@ export default function App() {
               {showRaw && <pre className="raw-output">{result.raw}</pre>}
             </div>
           )}
-          <Logos25></Logos25>
+          <Logos25 />
         </main>
 
         <footer>
-          <span className="mono">Special thanks to t^3</span>
-          &nbsp;·&nbsp; Group 5 &amp; Ethan C Hachue
+          &nbsp;·&nbsp; Group 5 
         </footer>
       </div>
     </>

@@ -29,7 +29,7 @@ interface LogosDoubleRowStaticProps {
 type Props = Partial<LogosDoubleRowStaticProps>;
 
 const defaultProps: LogosDoubleRowStaticProps = {
-  heading: "Trusted by these companies",
+  heading: "Used by these companies",
   subtitle: "Used by the world's leading teams & startups",
   topRow: [
     {
@@ -98,18 +98,18 @@ const Logos25 = (props: Props) => {
   };
 
   return (
-    <section className={cn("overflow-hidden py-32", className)}>
+    <section className={cn("overflow-hidden py-4", className)}>
       <div className="mx-auto max-w-5xl px-4">
         <div className="text-center">
-          <h2 className="text-xl font-semibold tracking-tight text-balance md:text-2xl lg:text-3xl">
+          <h2 className="text-sm font-semibold tracking-tight text-balance">
             {heading}
           </h2>
           {subtitle ? (
-            <p className="mt-2 text-lg text-[var(--muted)]">{subtitle}</p>
+            <p className="mt-1 text-xs text-[var(--muted)]">{subtitle}</p>
           ) : null}
         </div>
 
-        <div className="mt-10 flex w-full flex-col gap-8">
+        <div className="mt-3 flex w-full flex-col gap-3">
           <MarqueeRow logos={topRow} direction="left" />
           <MarqueeRow logos={bottomRow} direction="right" />
         </div>

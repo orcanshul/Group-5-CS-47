@@ -1,6 +1,6 @@
 # MIPS File Checksum Verifier
 
-**Authors:** Anshul Kulkarni, Ethan Hachue
+**Authors:** Group 5
 
 A file integrity tool that computes a SHA-256 checksum of any file using MIPS assembly running on the MARS simulator. Upload a file through the React web UI and the checksum is computed entirely inside the MIPS program - no shortcuts.
 
