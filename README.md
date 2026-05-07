@@ -1,6 +1,6 @@
 # Idea behind the project
 Names:
-orcanshulgaming
+Anshul Kulkarni
 Ethan Hachue
 
 
