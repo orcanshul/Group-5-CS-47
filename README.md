@@ -4,12 +4,10 @@ orcanshulgaming
 Ethan Hachue
 
 
-Input:
-- a file
-- optionally, a key
+Input: 
+- a file name
 
-Expected output:
-- a key generated (if key not provided)
-- a hash string derive from the file
+Expected output: 
+- a checksum derived from the file, after performing SHA-256
 
-If we input a pre-generated key and a slightly adjusted file, the hash will make it clear if whether its changed.
+If we input a slightly adjusted file, the hash will make it clear if whether its changed.
