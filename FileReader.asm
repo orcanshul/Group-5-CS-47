@@ -6,6 +6,10 @@
 errorMsg:   .asciiz "Error: Could not open file."
 output:     .asciiz "\nGenerated checksum: "
 fileBuffer: .space 128
+.align 2
+sha_ctx:    .space 112
+.align 2
+sha_out:    .space 32
 
 .text
 .globl main
@@ -13,6 +17,10 @@ fileBuffer: .space 128
 main:
     # Get filename from user
     get_file_name
+
+    # Initialize SHA-256 context
+    la $a0, sha_ctx
+    jal sha256_init
 
     # Open file (read-only)
     li $v0, 13
@@ -22,7 +30,6 @@ main:
     syscall
     bltz $v0, error
     move $s0, $v0           # save file descriptor
-    li $s1, 5381            # initialize hash seed
 
 read_loop:
     li $v0, 14
@@ -34,12 +41,11 @@ read_loop:
     beqz $s2, done
     bltz $s2, error
 
-    # Hash the current chunk
-    la $a0, fileBuffer
-    move $a1, $s2
-    move $a2, $s1           # Pass current running hash state
-    jal hash_buffer
-    move $s1, $v0           # Update running hash state from $v0
+    # Hash the current chunk (update running SHA-256 context)
+    la $a0, sha_ctx
+    la $a1, fileBuffer
+    move $a2, $s2
+    jal sha256_update
 
     # Print chunk
     la $t1, fileBuffer
@@ -58,9 +64,14 @@ done:
     move $a0, $s0
     syscall
 
-    # Print sha 256 hash (already computed in loop)
+    # Finalize and print SHA-256 digest
+    la $a0, sha_ctx
+    la $a1, sha_out
+    jal sha256_final
+
     print_string(output)
-    print_int($s1)
+    la $a0, sha_out
+    jal print_hex_digest
     la $a0, newline
     li $v0, 4
     syscall
