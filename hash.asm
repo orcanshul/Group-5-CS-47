@@ -66,4 +66,4 @@ hf_error:
     li   $v0, 10
     syscall
 
-#BLAZING FAST HASHING FOR MIPS🚀🚀🚀🚀🚀🚀🚀
+#BLAZING FAST — HASHING FOR MIPS🚀🚀🚀🚀🚀🚀🚀

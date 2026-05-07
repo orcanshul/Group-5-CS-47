@@ -95,7 +95,7 @@ export default function App() {
 
         {/* ── optional expected checksum ── */}
         <div className="field">
-          <label>Expected checksum <span className="optional">(optional — for verification)</span></label>
+          <label>Expected checksum <span className="optional">(optional - for verification)</span></label>
           <input
             type="text"
             className="text-input mono"
@@ -129,7 +129,7 @@ export default function App() {
 
             {matchStatus !== null && (
               <div className={`match ${matchStatus ? 'match-yes' : 'match-no'}`}>
-                {matchStatus ? '✓ Checksums match — file is unmodified' : '✗ Checksums differ — file may have changed'}
+                {matchStatus ? '✓ Checksums match - file is unmodified' : '✗ Checksums differ - file may have changed'}
               </div>
             )}
 
