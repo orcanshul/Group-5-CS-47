@@ -93,5 +93,3 @@ file_error:
     syscall
     li   $v0, 10
     syscall
-
-#BLAZINGLY FAST HASHING METHOD 
