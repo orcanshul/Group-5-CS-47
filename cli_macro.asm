@@ -4,6 +4,12 @@
     syscall
 .end_macro
 
+.macro print_int(%val)
+    move $a0, %val
+    li $v0, 1
+    syscall
+.end_macro
+
 .macro read_filename
     li $v0, 8
     la $a0, filename
