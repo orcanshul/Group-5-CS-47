@@ -54,7 +54,7 @@ export default function App() {
 
   return (
     <>
-      <Shader3 color="#4d9eff" />
+      <Shader3 color="#c87028" />
 
       <div className="app">
         <header>
@@ -142,7 +142,7 @@ export default function App() {
         </main>
 
         <footer>
-          <span className="mono">cli.asm · hash.asm · MARS 4.5</span>
+          <span className="mono">Special thanks to t^3</span>
           &nbsp;·&nbsp; Group 5 &amp; Ethan C Hachue
         </footer>
       </div>

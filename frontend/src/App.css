@@ -9,17 +9,17 @@
   --radius:     16px;
   --radius-sm:  10px;
 
-  --glass-bg:       rgba(4, 6, 11, 0.55);
-  --glass-border:   rgba(39, 5, 61, 0.847);
+  --glass-bg:       rgba(22, 12, 4, 0.65);
+  --glass-border:   rgba(80, 40, 8, 0.85);
   --glass-blur:     backdrop-filter: blur(18px) saturate(1.6);
-  --glass-shadow:   0 8px 40px rgba(24, 2, 40, 0.842), 0 1px 0 rgba(11, 2, 2, 0.011) inset;
-  --glow:           0 0 40px rgba(38, 4, 102, 0.516);
+  --glass-shadow:   0 8px 40px rgba(40, 18, 4, 0.85), 0 1px 0 rgba(11, 5, 2, 0.011) inset;
+  --glow:           0 0 40px rgba(120, 60, 8, 0.5);
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-  background: #060a14;
+  background: #0f0804;
   color: var(--text);
   font-family: -apple-system, 'Segoe UI', system-ui, sans-serif;
   min-height: 100vh;
@@ -112,7 +112,7 @@ h1 {
 
 /* ── drop zone ── */
 .drop-zone {
-  background: rgba(8, 14, 28, 0.5);
+  background: rgba(28, 14, 4, 0.55);
   border: 1.5px dashed rgba(77, 158, 255, 0.3);
   border-radius: var(--radius);
   padding: 2.75rem 2rem;
@@ -138,7 +138,7 @@ h1 {
 .drop-zone:hover,
 .drop-zone:focus {
   border-color: rgba(77, 158, 255, 0.55);
-  background: rgba(10, 20, 40, 0.6);
+  background: rgba(34, 18, 6, 0.7);
   box-shadow: var(--glass-shadow), var(--glow);
   transform: translateY(-2px);
 }
@@ -211,7 +211,7 @@ h1 {
 
 .text-input {
   width: 100%;
-  background: rgba(8, 14, 28, 0.5);
+  background: rgba(28, 14, 4, 0.55);
   border: 1px solid rgba(77, 158, 255, 0.18);
   border-radius: var(--radius-sm);
   color: var(--text);
@@ -299,7 +299,7 @@ h1 {
 
 /* ── cards ── */
 .card {
-  background: rgba(8, 14, 28, 0.55);
+  background: rgba(24, 12, 4, 0.65);
   border: 1px solid var(--glass-border);
   border-radius: var(--radius);
   padding: 1.5rem 1.75rem;
@@ -310,7 +310,7 @@ h1 {
 
 .error-card {
   border-color: rgba(255, 92, 87, 0.3);
-  background: rgba(40, 8, 8, 0.55);
+  background: rgba(40, 14, 4, 0.65);
 }
 
 .error-card strong {
@@ -334,7 +334,7 @@ h1 {
 /* ── result ── */
 .result-card {
   border-color: rgba(77, 158, 255, 0.25);
-  background: rgba(6, 14, 32, 0.6);
+  background: rgba(22, 10, 4, 0.75);
   position: relative;
   overflow: hidden;
 }
