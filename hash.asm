@@ -5,7 +5,7 @@
     hbuffer:    .space  4096            # separate name to avoid conflict with cli.asm
 
 .text
-# hash_file: $a0 = filename ptr -> returns DJB2 hash in $v0
+# hash_file: $a0 = filename ptr -> returns SHA256 hash in $v0
 hash_file:
     # save callee-saved registers
     addiu $sp, $sp, -12
@@ -20,7 +20,7 @@ hash_file:
     syscall
     bltz $v0, hf_error
     move $s0, $v0            # fd
-    li   $s1, 5381           # DJB2 seed
+    li   $s1, 5381           # SHA256 seed
 
 hf_read_loop:
     # read next chunk into hbuffer

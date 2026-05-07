@@ -63,7 +63,7 @@ done:
     move $a0, $s0
     syscall
 
-    # Compute and print DJB2 hash via hash.asm
+    # Compute and print SHA256 hash via hash.asm
     la  $a0, filename
     jal hash_file           # hash -> $v0
     move $s1, $v0           # save before print_string clobbers $v0

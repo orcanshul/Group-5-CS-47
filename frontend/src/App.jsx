@@ -125,7 +125,7 @@ export default function App() {
 
           {result && (
             <div className="card result-card">
-              <div className="result-label">DJB2 Checksum</div>
+              <div className="result-label">SHA256 Checksum</div>
               <div className="checksum-value">{result.checksum}</div>
 
               {matchStatus !== null && (
