@@ -59,7 +59,6 @@ export default function App() {
 
       <div className="app">
         <header>
-          <span className="badge">MIPS Reactor Core</span>
           <h1>File Checksum Verifier</h1>
           <p className="subtitle">Hash computed by MIPS assembly running on MARS</p>
         </header>
