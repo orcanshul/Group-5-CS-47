@@ -8,9 +8,9 @@ error_message:  .asciiz "Failed to open the file."
 output:         .asciiz "\nGenerated checksum: "
 
 .text
-.globl main
+.globl getFilename
 
-main:
+getFilename:
     print_string(prompt)
     read_filename
 
