@@ -21,10 +21,8 @@ COPY backend/server.js backend/
 
 # ── frontend ──────────────────────────────────────────────────────────────────
 COPY frontend/package.json frontend/
-RUN cd frontend && npm install
-
 COPY frontend/ frontend/
-RUN cd frontend && npm run build
+RUN cd frontend && npm install && npm run build
 
 # Move built frontend where the backend can serve it
 RUN cp -r frontend/dist backend/public
