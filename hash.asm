@@ -93,3 +93,6 @@ file_error:
     syscall
     li   $v0, 10
     syscall
+
+#BLAZING FAST HASHING FOR MIPS🚀🚀🚀🚀🚀🚀🚀
+
