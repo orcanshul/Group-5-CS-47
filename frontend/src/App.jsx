@@ -54,9 +54,9 @@ export default function App() {
   return (
     <div className="app">
       <header>
-        <span className="badge">MIPS</span>
+        <span className="badge">MIPS Reactor Core</span>
         <h1>File Checksum Verifier</h1>
-        <p className="subtitle">DJB2 hash computed by MIPS assembly running on MARS</p>
+        <p className="subtitle">Hash computed by MIPS assembly running on MARS</p>
       </header>
 
       <main>
@@ -143,7 +143,7 @@ export default function App() {
 
       <footer>
         <span className="mono">cli.asm · hash.asm · MARS 4.5</span>
-        &nbsp;·&nbsp; Anshul Kulkarni &amp; Ethan Hachue
+        &nbsp;·&nbsp;  &amp; Ethan C Hachue
       </footer>
     </div>
   );

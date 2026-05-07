@@ -1,5 +1,0 @@
-
-Backend  → http://localhost:3001
-MARS JAR → found ✓
-ASM      → found ✓
-
