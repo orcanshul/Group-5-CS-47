@@ -22,7 +22,7 @@ main:
     syscall
     bltz $v0, error
     move $s0, $v0           # save file descriptor
-    li $s1, 5381            # initialize DJB2 hash seed
+    li $s1, 5381            # initialize hash seed
 
 read_loop:
     li $v0, 14
@@ -58,7 +58,7 @@ done:
     move $a0, $s0
     syscall
 
-    # Print DJB2 hash (already computed in loop)
+    # Print sha 256 hash (already computed in loop)
     print_string(output)
     print_int($s1)
     la $a0, newline
