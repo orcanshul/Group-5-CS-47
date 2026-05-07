@@ -97,7 +97,7 @@ export default function App() {
           </div>
 
           <div className="field">
-            <label>Expected checksum <span className="optional">(optional — for verification)</span></label>
+            <label>Expected checksum <span className="optional">(optional for verification)</span></label>
             <input
               type="text"
               className="text-input mono"
